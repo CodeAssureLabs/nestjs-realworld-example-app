@@ -134,7 +134,7 @@ export class ArticleService {
 
     if (user.favorites.contains(article)) {
       user.favorites.remove(article);
-      article.favoritesCount--;
+      article.favoritesCount = Math.max(0, article.favoritesCount - 1);
     }
 
     await this.em.flush();

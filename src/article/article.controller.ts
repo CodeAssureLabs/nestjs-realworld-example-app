@@ -58,7 +58,7 @@ export class ArticleController {
   }
 
   @ApiOperation({ summary: 'Delete article' })
-  @ApiResponse({ status: 201, description: 'The article has been successfully deleted.' })
+  @ApiResponse({ status: 200, description: 'The article has been successfully deleted.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Delete(':slug')
   async delete(@Param() params: { slug: string }) {
@@ -78,7 +78,7 @@ export class ArticleController {
   }
 
   @ApiOperation({ summary: 'Delete comment' })
-  @ApiResponse({ status: 201, description: 'The article has been successfully deleted.' })
+  @ApiResponse({ status: 200, description: 'The comment has been successfully deleted.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Delete(':slug/comments/:id')
   async deleteComment(@User('id') user: number, @Param() params: { slug: string; id: string }) {
