@@ -5,6 +5,7 @@ import slug from 'slug';
 import { User } from '../user/user.entity';
 import { Comment } from './comment.entity';
 
+// Plan 11 shape validation (11.9) — entity class with common fields
 @Entity()
 export class Article {
   @PrimaryKey()
