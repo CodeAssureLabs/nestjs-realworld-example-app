@@ -28,6 +28,9 @@ export class Article {
   @Property({ onUpdate: () => new Date() })
   updatedAt = new Date();
 
+  @Property({ nullable: true })
+  publishedAt?: Date;
+
   @Property({ type: ArrayType })
   tagList: string[] = [];
 
