@@ -1,0 +1,25 @@
+schema_version: 1
+manifest_version: 1
+repo: CodeAssureLabs/nestjs-realworld-example-app
+
+# Layer ids match the vocabulary fast-kg assigns here (NestJS filename idioms:
+# *.controller→api, *.service→service, *.repository/migrations→data, entities/dto→domain).
+layers:
+  entry:   [api, service, domain, data, utils]
+  api:     [service, domain, utils]
+  service: [data, domain, utils]
+  data:    [domain, utils]
+  domain:  [utils]
+  utils:   []
+
+cross_cutting: [utils, config]
+
+forbidden_edges:
+  - id: no-data-to-api
+    from: data
+    to: api
+    reason: "data is a leaf; it must not call up into api (dependency inversion)"
+    check: blocking
+    severity: high
+
+exemptions: []
