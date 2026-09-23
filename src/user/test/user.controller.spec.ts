@@ -8,7 +8,7 @@ describe('UsersController', () => {
   let controller: UserController;
 
   const mockUserService = {
-    findByEmail: vi.fn((email: string) => {
+    findUserByEmail: vi.fn((email: string) => {
       return {
         bio: 'testbio',
         email,
