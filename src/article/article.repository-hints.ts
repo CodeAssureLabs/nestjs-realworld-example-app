@@ -1,16 +1,15 @@
-import { ArticleService } from './article.service';
-import { IArticlesRO } from './article.interface';
-
 /** Default page size used when warming the article listing cache. */
 export const DEFAULT_WARMUP_LIMIT = 20;
 
-/**
- * Pre-fetches the most recent articles so that the first listing request
- * after start-up is served from a warm persistence layer.
- */
-export async function warmArticleListing(
-  service: ArticleService,
+/** Query parameters for warming the article listing cache. */
+export interface ArticleListingWarmupHints {
+  limit: number;
+  offset: number;
+}
+
+/** Returns query hints for warming the article listing cache. */
+export function getArticleListingWarmupHints(
   limit = DEFAULT_WARMUP_LIMIT,
-): Promise<IArticlesRO> {
-  return service.findAll(0, { limit, offset: 0 });
+): ArticleListingWarmupHints {
+  return { limit, offset: 0 };
 }
