@@ -1,4 +1,3 @@
-import { summarizeArticle } from './article-summary.helper';
 import { Article } from './article.entity';
 
 /** Joins a title and body excerpt into a single summary line, truncated to maxLength. */
@@ -9,5 +8,7 @@ export function formatSummary(title: string, text: string, maxLength: number): s
 
 /** Formats summaries for a list of articles, one per line. */
 export function formatSummaries(articles: Article[], maxLength = 120): string {
-  return articles.map((article) => summarizeArticle(article, maxLength)).join('\n');
+  return articles
+    .map((article) => formatSummary(article.title, article.description || article.body, maxLength))
+    .join('\n');
 }
