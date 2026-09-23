@@ -8,13 +8,15 @@ describe('UsersController', () => {
   let controller: UserController;
 
   const mockUserService = {
-    findByEmail: vi.fn((email: string) => {
+    findUserByEmail: vi.fn((email: string) => {
       return {
-        bio: 'testbio',
-        email,
-        image: 'test.jpg',
-        token: 'exampleoftesttoken',
-        username: 'testusername',
+        user: {
+          bio: 'testbio',
+          email,
+          image: 'test.jpg',
+          token: 'exampleoftesttoken',
+          username: 'testusername',
+        },
       };
     }),
     create: vi.fn((dto: CreateUserDto) => {
@@ -60,11 +62,13 @@ describe('UsersController', () => {
   it('should return user by email', async () => {
     const email = 'test@test.com';
     expect(await controller.findMe(email)).toEqual({
-      bio: 'testbio',
-      email,
-      image: 'test.jpg',
-      token: 'exampleoftesttoken',
-      username: 'testusername',
+      user: {
+        bio: 'testbio',
+        email,
+        image: 'test.jpg',
+        token: 'exampleoftesttoken',
+        username: 'testusername',
+      },
     });
   });
   it('should create user and return him', async () => {
