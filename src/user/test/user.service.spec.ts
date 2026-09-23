@@ -102,7 +102,7 @@ describe('UsersService', () => {
     });
   });
   it('should return user by email', async () => {
-    expect(await service.findByEmail('test@test.com')).toEqual({
+    expect(await service.findUserByEmail('test@test.com')).toEqual({
       user: {
         bio: 'test',
         email: 'test@test.com',
