@@ -85,7 +85,6 @@ export class UserService {
     return this.buildUserRO(user);
   }
 
-  /** Looks up a user by e-mail address and returns its response object. */
   async findUserByEmail(email: string): Promise<IUserRO> {
     const user = await this.userRepository.findOneOrFail({ email });
     return this.buildUserRO(user);
